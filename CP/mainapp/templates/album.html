@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<br>
+<strong style="font-size: 25px;">사진첩</strong>
+<hr>
+<!-- 사진첩 -->
+
+<!-- for 반복 -->
+<div class="row" style="text-align: center;">
+    <div class="col">
+        <a href="#"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
+        <br>
+        <strong>바디모델명 / 렌즈모델명</strong>
+    </div>
+    <div class="col">
+        <a href="#"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
+        <br>
+        <strong>바디 / 렌즈</strong>
+    </div>
+    <div class="col">
+        <a href="#"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
+        <br>
+        <strong>바디 / 렌즈</strong>
+    </div>    
+</div>
+<hr>
+
+{% endblock %}
