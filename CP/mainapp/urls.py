@@ -4,8 +4,8 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('item/', views.item, name='item'),
-    path('rank/', views.rank, name='rank'),
-    path('album/', views.album, name='album'),
+    # path('', views.index, name='index'),
+    # path('item/', views.item, name='item'),
+    # path('rank/', views.rank, name='rank'),
+    # path('album/', views.album, name='album'),
 ]
