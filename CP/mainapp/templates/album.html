@@ -5,26 +5,35 @@
 <br>
 <strong style="font-size: 25px;">사진첩</strong>
 <hr>
+
+<!-- 로그인시에만 올릴수있게 -->
+<!-- {% if request.user.is_authenticated %} -->
+    <a href="#" onclick="window.open('/create_album', '_blank', 'width=500 height=500')">업로드</a>
+    <hr>
+<!-- {% endif %} -->
+
 <!-- 사진첩 -->
-
-<!-- for 반복 -->
-<div class="row" style="text-align: center;">
-    <div class="col">
-        <a href="#"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
-        <br>
-        <strong>바디모델명 / 렌즈모델명</strong>
+{% for albums in albums %}
+{% if albums %}
+<form action="." method='POST'>
+    {% csrf_token %}
+    <div class="row" style="text-align: center;">
+        <div class="col">
+            <input name = 'album_id' type = 'hidden' value = "{{ albums.id }}">
+            <img src="{{ albums.pic.url }}" alt="" width="100px" height="90px">
+            <br>
+            <button type="submit"><strong>삭제</strong></button>
+        </div>
     </div>
-    <div class="col">
-        <a href="#"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
-        <br>
-        <strong>바디 / 렌즈</strong>
-    </div>
-    <div class="col">
-        <a href="#"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
-        <br>
-        <strong>바디 / 렌즈</strong>
-    </div>    
-</div>
-<hr>
+    <hr>
+</form>
+{% endif %}
 
+{% endfor %}
 {% endblock %}
+
+<!-- <div class="col">
+    <a href="#" target="_blank"><img src="{% static 'images/pic01.jpg' %}" width="300" alt="" /></a>
+    <br>
+    <strong>바디 / 렌즈</strong>
+</div> -->
