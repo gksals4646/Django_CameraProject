@@ -27,13 +27,19 @@ def signup(request):
                 address = request.POST['address'],
                 phone = request.POST['phone'],
                 gender = request.POST['gender'],
+                age = request.POST['age'],
                 ) #사용자정보 post로 받고
             auth.login(request, user) #자동 로그인
             return redirect('signup_done') #인덱스 page로
         return render(request, 'signup.html', {'error': '비밀번호가 틀립니다.'}) #pw <> repw 일때
-    return render(request, 'userapp/signup.html') #post아닐때
+    return render(request, 'signup.html') #post아닐때
 
+#회원가입 완료
+def signup_done(request):
+    return render(request, 'signup_done.html')
+    
 #로그아웃
 def logout(request):
     auth.logout(request)
     return redirect('login')
+
