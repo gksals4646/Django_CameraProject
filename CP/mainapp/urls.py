@@ -9,4 +9,5 @@ urlpatterns = [
     path('rank/', views.rank, name='rank'),
     path('album/', views.album, name='album'),
     path('create_album/' , views.create_album, name='create_album'),
+    path('search/', views.search, name='search'),
 ]

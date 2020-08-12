@@ -30,3 +30,24 @@ def create_album(request):
         album.save()
         return render(request,'create_album.html',{'done' :'donedone'})
     return render(request,'create_album.html',{'bodypd' : bodypd , 'lenspd' : lenspd})
+
+def search(request):
+    album = Album.objects.all()
+    search_body = request.GET['search_name']
+    search_lens = request.GET['search_name']
+    search_brand = request.GET['search_name']
+
+    if search_body:
+        albums = album.filter(bodypd__filmb__icontains=search_body)
+        return render(request, 'search_list.html', {'albums':albums})
+
+    elif search_lens:
+        albums = album.filter(lenspd__lname__icontains=search_lens)
+        return render(request, 'search_list.html', {'albums':albums})
+
+    # elif search_brand:
+    #     albums = album.filter(brandpd__icontains=search_brand)
+    #     return render(request, 'search_list.html', {'albums':albums})
+    
+    else:
+        return redirect('album')
