@@ -31,6 +31,13 @@ def create_album(request):
         return render(request,'create_album.html',{'done' :'donedone'})
     return render(request,'create_album.html',{'bodypd' : bodypd , 'lenspd' : lenspd})
 
+# 사진 삭제 함수
+def delete_album(request):
+    album_id = request.GET['album_id'] # 삭제 버튼을 눌렀을 때 album_id 를 받아옴
+    album = Album.objects.get(id=album_id) # models 의 Album 중 id 가 같은 것을 가져옴
+    album.delete() # 삭제
+    return redirect('album')
+
 def search(request):
     album = Album.objects.all()
     search_body = request.GET['search_name'] 
