@@ -31,12 +31,6 @@ def create_album(request):
         return render(request,'create_album.html',{'done' :'donedone'})
     return render(request,'create_album.html',{'bodypd' : bodypd , 'lenspd' : lenspd})
 
-def delete_album(request):
-    album_id = request.GET['album_id']
-    album = Album.objects.get(id=album_id)
-    album.delete()
-    return redirect('album')
-
 def search(request):
     album = Album.objects.all()
     search_body = request.GET['search_name'] 
