@@ -10,4 +10,6 @@ urlpatterns = [
     path('album/', views.album, name='album'),
     path('create_album/' , views.create_album, name='create_album'),
     path('search/', views.search, name='search'),
+    path('album_detail/<int:pk>', views.album_detail, name='album_detail'),
+
 ]

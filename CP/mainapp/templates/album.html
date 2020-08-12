@@ -15,18 +15,19 @@
 <!-- 사진첩 -->
 {% for albums in albums %}
 {% if albums %}
-<form action="." method='POST'>
-    {% csrf_token %}
+<!-- <form action="." method='POST'> -->
+    <!-- {% csrf_token %} -->
     <div class="row" style="text-align: center;">
         <div class="col">
             <input name = 'album_id' type = 'hidden' value = "{{ albums.id }}">
             <img src="{{ albums.pic.url }}" alt="" width="100px" height="90px">
             <br>
             <button type="submit"><strong>삭제</strong></button>
+            <a href="{% url 'album_detail' albums.pk %}">상세정보</a>
         </div>
     </div>
     <hr>
-</form>
+<!-- </form> -->
 {% endif %}
 
 {% endfor %}

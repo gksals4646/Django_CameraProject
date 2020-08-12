@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Album,Review
 from pdapp.models import *
 # Create your views here.
@@ -51,3 +51,7 @@ def search(request):
     
     else:
         return redirect('album')
+
+def album_detail(request,pk):
+    album = Album.objects.filter(pk=pk)
+    return render(request,'album_detail.html',{'album' : album })
