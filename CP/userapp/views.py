@@ -42,4 +42,3 @@ def signup_done(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
-
