@@ -8,8 +8,8 @@
 
 <!-- 로그인시에만 올릴수있게 -->
 <!-- {% if request.user.is_authenticated %} -->
-    <a href="#" onclick="window.open('/create_album', '_blank', 'width=500 height=500')">업로드</a>
-    <hr>
+<a href="#" onclick="window.open('/create_album', '_blank', 'width=500 height=500')">업로드</a>
+<hr>
 <!-- {% endif %} -->
 
 <!-- 사진첩 -->
@@ -19,7 +19,7 @@
     <!-- {% csrf_token %} -->
     <div class="row" style="text-align: center;">
         <div class="col">
-            <input name = 'album_id' type = 'hidden' value = "{{ albums.id }}">
+            <input name='album_id' type='hidden' value="{{ albums.id }}">
             <img src="{{ albums.pic.url }}" alt="" width="100px" height="90px">
             <br>
             <button type="submit"><strong>삭제</strong></button>
