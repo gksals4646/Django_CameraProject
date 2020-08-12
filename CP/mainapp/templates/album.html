@@ -22,7 +22,10 @@
             <input name = 'album_id' type = 'hidden' value = "{{ albums.id }}">
             <img src="{{ albums.pic.url }}" alt="" width="100px" height="90px">
             <br>
-            <button type="submit"><strong>삭제</strong></button>
+            <form action="{% url 'delete_album' %}">
+                <input type="hidden" id='album_id' name='album_id' value="{{ album_id }}">
+                <button type="submit"><strong>삭제</strong></button>
+            </form>
         </div>
     </div>
     <hr>
