@@ -1,7 +1,8 @@
-<<<<<<< HEAD
 from django.shortcuts import render
 from .models import Product
-
+from django.shortcuts import render,redirect,get_object_or_404
+from .models import Album,Review
+from pdapp.models import *
 # Create your views here.
 
 # 메인 페이지
@@ -17,7 +18,6 @@ def item_lens(request):
     product_lens = Product.objects.filter(bodytype='2')
     return render(request, 'item_lens.html', {'product_lens':product_lens})
 
-
 # 랭킹 페이지
 def rank(request):
     return render(request, 'rank.html')
@@ -25,20 +25,11 @@ def rank(request):
 # 사진첩 페이지
 def album(request):
     return render(request, 'album.html')
-=======
-from django.shortcuts import render,redirect,get_object_or_404
-from .models import Album,Review
-from pdapp.models import *
-# Create your views here.
 
-def index(request):
-    return render(request, 'index.html')
 
 def item(request):
     return render(request, 'item.html')
 
-def rank(request):
-    return render(request, 'rank.html')
 
 def album(request):
     albums=reversed(Album.objects.all()) 
@@ -93,4 +84,3 @@ def search(request):
 def album_detail(request,pk):
     album = Album.objects.filter(pk=pk)
     return render(request,'album_detail.html',{'album' : album })
->>>>>>> 0811석근시작1
