@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<br>
+<strong style="font-size: 25px;">상품</strong>&nbsp;&nbsp;&nbsp;Item
+<hr>
+
+    {% for product_lens in product_lens %}
+
+    <div class="row" style="text-align: left;">
+        <div class="col">
+            <a href="#"><img src="{{ product_lens.pic.url }}" width="250" height="250" alt="" /></a>
+        </div>
+        <div class="col" style="margin-left: 80px;">
+            <br>
+            <br>
+            <h3>{{ product_lens.pdname }}</h2>
+                <strong>제조사 : {{ product_lens.brand }}</strong>
+                <br>
+                <strong>가격 : {{ product_lens.price }}원</strong>
+                <br>
+                <strong>평점 : {{ product_lens.star }}</strong>
+        </div>
+    </div>
+    <hr>
+
+    {% endfor %}
+
+{% endblock %}

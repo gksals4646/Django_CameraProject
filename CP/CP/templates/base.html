@@ -12,6 +12,31 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+	<!-- 웹 폰트 -->
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+	<style>
+		body,
+		div,
+		header,
+		a,
+		ul,
+		ol,
+		li,
+		section,
+		nav,
+		span,
+		footer,
+		a,
+		strong,
+		h1,
+		h2,
+		h3,
+		p,
+		article {
+			font-family: 'Do Hyeon', sans-serif;
+		}
+	</style>
 	{%block head %}
 	{% endblock %}
 </head>
@@ -27,7 +52,7 @@
 
 				<!-- Header -->
 				<header id="header">
-					<a href="index.html" class="logo"><strong>이름</strong> by 수원팀</a>
+					<a href="{% url 'index' %}" class="logo"><strong>이름</strong></a>
 					<ul class="icons">
 						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -51,8 +76,8 @@
 
 				<!-- Search -->
 				<section id="search" class="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
+					<form method="GET" action="{% url 'search' %}">
+						<input type="text" name="search_name" id="search_name" placeholder="Search" />
 					</form>
 				</section>
 
@@ -62,7 +87,7 @@
 						<h2>Menu</h2>
 					</header>
 					<ul>
-						<li><a href="{ url '.'}">홈</a></li>
+						<li><a href="{% url 'index' %}">홈</a></li>
 						<li><a href="#">로그인 / 회원가입</a></li>
 						<li>
 							<span class="opener">마이페이지</span>
@@ -73,8 +98,14 @@
 								<li><a href="#">내 사진첩</a></li>
 							</ul>
 						</li>
+						<li>
+							<span class="opener">상품</span>
+							<ul>
+								<li><a href="{% url 'item_body' %}">바디</a></li>
+								<li><a href="{% url 'item_lens' %}">렌즈</a></li>
+							</ul>
 						<li><a href="#">랭킹</a></li>
-						<li><a href="#">사진첩</a></li>
+						<li><a href="{% url 'album' %}">사진첩</a></li>
 					</ul>
 				</nav>
 
