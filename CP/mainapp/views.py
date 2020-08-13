@@ -84,3 +84,4 @@ def search(request):
 def album_detail(request,pk):
     album = Album.objects.filter(pk=pk)
     return render(request,'album_detail.html',{'album' : album })
+
