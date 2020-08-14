@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from mainapp.models import Review
-from .models import *
 from django.contrib import auth
+from .models import *
 
 # Create your views here.
 
@@ -59,32 +59,13 @@ def mypage(request):
     # 아니라면 로그인페이지 접근
     else :
         return redirect('login')
-    
-       
-
-
-# # 내리뷰
-# def myreview(request):
-#     user = get_object_or_404(User, pk=pk)
-#     content = Review.objects.filter(user = user)
-#     date= 
-#     star=
-#     return render(request, 'myreview.html')
 
 
 def myinfo(request):
     return render(request,'myinfo.html')
 
-# def myitem(request):
-#     item = MyProduct.objects.all()
-#     if 아이템 있으면:
-#         a = reversed(Picture.objects.filter(User = request.user))
-#         return render(request, 'myitem.html')
-#     else :
-#         return render(request, )
-
-    #     product =  models.ForeignKey(Product, on_delete = models.CASCADE)
-    # user = models.ForeignKey(User, on_delete = models.CASCADE)
-    # date  = models.DateField(null = True, auto_now=True) #리뷰 쓴 날짜
-    # content  = models.TextField(null = True)
-    # star= models.IntegerField(null = True) #별점
+#내리뷰
+def myreview(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    content = Review.objects.all()
+    return render(request, 'myreview.html', {'user':user})
