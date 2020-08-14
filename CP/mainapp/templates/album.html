@@ -8,8 +8,13 @@
 
 <!-- 로그인시에만 올릴수있게 -->
 <!-- {% if request.user.is_authenticated %} -->
+
+<!-- 검색 기능 시 업로드 기능 제거 -->
+{% if albums %}
 <a href="#" onclick="window.open('/create_album', '_blank', 'width=500 height=500')">업로드</a>
 <hr>
+{% endif %}
+
 <!-- {% endif %} -->
 
 <!-- 사진첩 -->

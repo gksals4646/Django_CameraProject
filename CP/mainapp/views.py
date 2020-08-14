@@ -64,7 +64,7 @@ def search(request):
     search_brand = request.GET['search_name']
     albums_body = album.filter(bodypd__filmb__icontains=search_body)
     albums_lens = album.filter(lenspd__lname__icontains=search_lens)
-    albums_brand = album.filter(brandpd__icontains=search_brand)
+    # albums_brand = album.filter(brandpd__icontains=search_brand)
 
     if albums_body:
         albums = album.filter(bodypd__filmb__icontains=search_body)
