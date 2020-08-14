@@ -7,7 +7,5 @@ urlpatterns = [
     path('signup_done/', views.signup_done, name = 'signup_done'),
     path('logout/', views.logout, name = 'logout'),
     path('mypage/', views.mypage, name = 'mypage'),
-    path('myreview/', views.myreivew, name='myreview'),
-    
-    
+    path('myreview/<int:pk>', views.myreview, name='myreview'),
 ]

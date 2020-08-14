@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from mainapp.models import Review
+from .models import *
 
 # Create your views here.
 
@@ -58,18 +59,8 @@ def mypage(request):
         return render(request, 'mypage.html') #로그인 되어있으면 마이페이지로 이동!
 
 
-내리뷰
-def myreview(request):
+#내리뷰
+def myreview(request, pk):
     user = get_object_or_404(User, pk=pk)
-    content = Review.objects.filter(user = user)
-    date= 
-    star=
-    return render(request, 'myreview.html')
-
-
-
-        product =  models.ForeignKey(Product, on_delete = models.CASCADE)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
-    date  = models.DateField(null = True, auto_now=True) #리뷰 쓴 날짜
-    content  = models.TextField(null = True)
-    star= models.IntegerField(null = True) #별점
+    content = Review.objects.all()
+    return render(request, 'myreview.html', {'user':user})
