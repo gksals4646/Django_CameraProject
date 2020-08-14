@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib import auth #로그인 할때 사용할 라이브러리
-from .models import User
+from mainapp.models import Review
+from .models import *
+from django.contrib import auth
 
 # Create your views here.
-def login(request):
+
+#로그인
+def login(request): 
     if request.method =='POST': #post방식이면
         username = request.POST['username'] #유저네임 받고
         password = request.POST['password'] #pw받고
@@ -21,12 +24,17 @@ def login(request):
 def signup(request):
     if request.method == 'POST' :
         if request.POST['password'] == request.POST['re_password']: 
+            if request.POST['gender'] == '1':
+                gen = True
+            else:
+                gen = False
+
             user = User.objects.create_user(
                 username=request.POST['username'], 
                 password = request.POST['password'],
                 address = request.POST['address'],
                 phone = request.POST['phone'],
-                gender = request.POST['gender'],
+                gender = gen,
                 age = request.POST['age'],
                 ) #사용자정보 post로 받고
             auth.login(request, user) #자동 로그인
@@ -52,3 +60,21 @@ def mypage(request):
     else :
         return redirect('login')
     
+       
+
+
+# # 내리뷰
+# def myreview(request):
+#     user = get_object_or_404(User, pk=pk)
+#     content = Review.objects.filter(user = user)
+#     date= 
+#     star=
+#     return render(request, 'myreview.html')
+
+
+
+        product =  models.ForeignKey(Product, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    date  = models.DateField(null = True, auto_now=True) #리뷰 쓴 날짜
+    content  = models.TextField(null = True)
+    star= models.IntegerField(null = True) #별점
