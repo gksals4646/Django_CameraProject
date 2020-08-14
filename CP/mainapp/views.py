@@ -11,11 +11,11 @@ def index(request):
 
 # 상품 페이지
 def item_body(request):
-    product_body = Product.objects.filter(bodytype='1')
+    product_body = Product.objects.filter(lenstype=None)
     return render(request, 'item_body.html', {'product_body':product_body})
 
 def item_lens(request):
-    product_lens = Product.objects.filter(bodytype='2')
+    product_lens = Product.objects.filter(bodytype=None)
     return render(request, 'item_lens.html', {'product_lens':product_lens})
 
 # 랭킹 페이지
