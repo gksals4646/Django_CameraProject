@@ -12,7 +12,7 @@ urlpatterns = [
     path('create_album/', views.create_album, name='create_album'),
     path('search/', views.search, name='search'),
     path('album_detail/<int:pk>', views.album_detail, name='album_detail'),
-    path('item_detail/<int:pk>', views.item_detail, name='item_detail'),
+    # path('item_detail/<int:pk>', views.item_detail, name='item_detail'),
 
     # path('', views.index, name='index'),
     # path('item/', views.item, name='item'),
