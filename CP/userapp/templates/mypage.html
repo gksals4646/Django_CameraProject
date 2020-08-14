@@ -4,7 +4,7 @@
 {% block contents %}
 <br>
 <strong style="font-size: 25px;">My Page</strong>
-<p>정수빙수님 환영합니다!</p>
+<p><div id="profile" style = 'height: 50px;'><pre><span>{{ request.user.username }}</span></pre></div> 님 환영합니다!</p>
 <hr>
 <div class="scrollable">
 <table>
@@ -13,7 +13,7 @@
         
         <strong></strong><th><a href="{% url 'myinfo' %}" class="count"><span id="">내 정보</span></a></th></strong>
         <strong></strong><th><a href="#" class="count"><span id="">내 리뷰</span></a></th></strong>
-        <strong></strong><th><a href="" class="count"><span id="">구매 상품</span></a></th></strong>
+        <strong></strong><th><a href="#" class="count"><span id="">구매 상품</span></a></th></strong>
         <strong></strong><th><a href="" class="count"><span id="">내 사진</span></a></th></strong>
     </tr>
     </thead>
