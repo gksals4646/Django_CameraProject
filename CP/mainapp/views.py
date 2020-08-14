@@ -13,7 +13,10 @@ def index(request):
 # 상품 페이지
 def item_body(request):
     product_body = Product.objects.filter(lenstype=None)
-    star = Star.objects.all()
+
+    # star = Star.objects.values('pdstar') \
+    #               .annotate(Avg('star'))
+                  
     return render(request, 'item_body.html', {'product_body':product_body, 'star':star})
 
 def item_lens(request):

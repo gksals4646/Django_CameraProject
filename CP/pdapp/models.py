@@ -24,5 +24,5 @@ class Product(models.Model):
     lenstype = models.ForeignKey(LensType, null = True , blank = True,  on_delete = models.CASCADE)
 
 class Star(models.Model):
-    pdname = models.ForeignKey(Product, on_delete = models.CASCADE)
+    pdstar = models.ForeignKey(Product, on_delete = models.CASCADE)
     star = models.IntegerField(null = True)
