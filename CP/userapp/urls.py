@@ -10,5 +10,5 @@ urlpatterns = [
     #path('mypic/', views.mypic, name = 'mypic'),
     #path('myreview/', views.myreview, name = 'myreview'),
     #path('myitem/', views.myitem, name = 'myitem'),
-    #path('myinfo/', views.myinfo, name = 'myinfo'),
+    path('myinfo/', views.myinfo, name = 'myinfo'),
 ]

@@ -2,7 +2,18 @@
 {% load static %}
 
 {% block contents %}
-<br>
-<strong style="font-size: 25px;">내 정보</strong>
-<hr>
+<div id="main">
+    <div class="subject">
+        <br>
+        <strong style="font-size: 25px;">내 정보</strong>
+        <hr>
+        <div class="article">
+            <div id="profile" style = 'height: 50px;'><pre><span>{{ request.user.address }}</span></pre></div> 
+            <div id="profile" style = 'height: 50px;'><pre><span>{{ request.user.phone }}</span></pre></div>
+            <div id="profile" style = 'height: 50px;'><pre><span>{{ request.user.age }}</span></pre></div> 
+            <div id="profile" style = 'height: 50px;'><pre><span>{{ request.user.gender }}</span></pre></div>  
+        </div>
+        
+        <a href="#">수정</a>
+
 {% endblock %}

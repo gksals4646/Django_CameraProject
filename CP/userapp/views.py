@@ -56,4 +56,5 @@ def mypage(request):
     else :
         return render(request, 'mypage.html') #로그인 되어있으면 마이페이지로 이동!
 
-
+def myinfo(request):
+    return render(request,'myinfo.html')
