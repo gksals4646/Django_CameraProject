@@ -90,7 +90,7 @@
         </table>
       </div>
       <div id="comments">
-        <h2>Comments</h2>
+        <h2>Review</h2>
         <ul>
           <li>
             <article>
@@ -144,30 +144,27 @@
             </article>
           </li>
         </ul>
-        <h2>Write A Comment</h2>
+        <h2>Write A Review</h2>
         <form action="#" method="post">
           <div class="one_third first">
-            <label for="name">Name <span>*</span></label>
+            <label for="name">작성자 <span>*</span></label>
             <input type="text" name="name" id="name" value="" size="22" required>
           </div>
           <div class="one_third">
-            <label for="lenstype">Lens name <span>*</span></label>
+            <label for="lenstype">제품 이름 <span>*</span></label>
             <input type="text" name="lenstype" id="lenstype" value="" size="22" required>
           </div>
-          <div class="one_third">
-            <label for="bodytype">Body name <span>*</span></label>
+          <div class="one_third"><!--날짜형태 수정안했어 ㅜㅜ-->
+            <label for="bodytype">날짜 <span>*</span></label>
             <input type="text" name="bodytype" id="bodytype" value="" size="22" required>
           </div>
-          <div class="one_third">
-            <label for="pic">Picture (제품으로 찍은 사진을 첨부해주세요)</label>
-            <input type="file" id = "picture" name="picture" accept="image/*">
-          </div>
+          
           <div class="block clear">
-            <label for="lenscomment">Lens Comment</label>
+            <label for="lenscomment">리뷰를 작성해주세요</label>
             <textarea name="lenscomment" id="lenscomment" cols="25" rows="10"></textarea>
           </div>
           <div class="block clear">
-            <label for="bodycomment">Body Comment</label>
+            <label for="bodycomment">별점</label><!--별점형태도 수정안했어-->
             <textarea name="bodycomment" id="bodycomment" cols="25" rows="10"></textarea>
           </div>
           <div>
