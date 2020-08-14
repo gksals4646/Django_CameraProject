@@ -43,3 +43,17 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
+
+#마이페이지(로그인 상태일 때만 마이페이지 들어가는 거 허용해줌)
+def mypage(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(request, username=username, password=password)
+        if user is not None: #로그인 안 되어 있으면 그냥 메인화면에 머물기
+            auth.login(request, user)
+            return redirect('index')
+    else :
+        return render(request, 'mypage.html') #로그인 되어있으면 마이페이지로 이동!
+
+
