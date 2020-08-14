@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 # from userapp.models import User
 
 # Create your models here.
@@ -18,9 +19,10 @@ class Product(models.Model):
     brand = models.CharField(max_length = 100, null = True)
     price = models.IntegerField(null = True)
     pic = models.ImageField(null = True, upload_to="%Y/%m/%d")
-    star = models.IntegerField(null = True) #별점
-    bodytype = models.ForeignKey(BodyType, null = True , on_delete = models.CASCADE)
-    lenstype = models.ForeignKey(LensType, null = True , on_delete = models.CASCADE)
+    # star = models.IntegerField(null = True) #별점
+    bodytype = models.ForeignKey(BodyType, null = True , blank = True,  on_delete = models.CASCADE)
+    lenstype = models.ForeignKey(LensType, null = True , blank = True,  on_delete = models.CASCADE)
 
-
-
+class Star(models.Model):
+    pdname = models.ForeignKey(Product, on_delete = models.CASCADE)
+    star = models.IntegerField(null = True)
