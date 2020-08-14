@@ -43,3 +43,12 @@ def logout(request):
     auth.logout(request)
     return redirect('login')
 
+# 마이페이지
+def mypage(request):
+    # 로그인 되어있으면 myapge.html 접근
+    if request.user.is_authenticated:
+        return render(request,'mypage.html')
+    # 아니라면 로그인페이지 접근
+    else :
+        return redirect('login')
+    

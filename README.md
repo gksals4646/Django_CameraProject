@@ -17,3 +17,6 @@ Merge branch test(정수빈)
 2020 08 14 ----------------
 Merge branch 유진아 마이페이지
 1. 마이페이지 수정
+
+한민 master 수정
+1. 마이페이지 view 작성(login.html 없어서 오류)
