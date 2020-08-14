@@ -18,5 +18,5 @@ urlpatterns = [
     # path('item/', views.item, name='item'),
     # path('rank/', views.rank, name='rank'),
     # path('album/', views.album, name='album'),
-    #path('item_detail/', views.item_detail, name = 'item_detail'),
+    # path('item_detail/', views.item_detail, name = 'item_detail'),
 ]
