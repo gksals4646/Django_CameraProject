@@ -44,7 +44,7 @@ def signup(request):
 
 #회원가입 완료
 def signup_done(request):
-    return render(request, 'signup_done.html')
+    return render(request, 'signupdone.html')
     
 #로그아웃
 def logout(request):
@@ -73,8 +73,8 @@ def mypage(request):
 
 
 
-        product =  models.ForeignKey(Product, on_delete = models.CASCADE)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
-    date  = models.DateField(null = True, auto_now=True) #리뷰 쓴 날짜
-    content  = models.TextField(null = True)
-    star= models.IntegerField(null = True) #별점
+    #     product =  models.ForeignKey(Product, on_delete = models.CASCADE)
+    # user = models.ForeignKey(User, on_delete = models.CASCADE)
+    # date  = models.DateField(null = True, auto_now=True) #리뷰 쓴 날짜
+    # content  = models.TextField(null = True)
+    # star= models.IntegerField(null = True) #별점

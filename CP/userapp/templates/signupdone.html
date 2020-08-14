@@ -12,24 +12,9 @@
    {% endblock %}
 
             {% block contents %}
-                <div class="login-box">
-                    <form action="{% url 'login' %}" method="POST">
-                    {% csrf_token %}
-                    <h1>Login</h1>     
-                    {{ error }}            
-                    <input type="text" name = 'username' placeholder="아이디">
-                    <input type="password" name = 'password' placeholder="비밀번호">
-                    <ul class="actions">
-                        <li><input type ='submit' class="button primary" value = 'login'></li>
-                        <li><a href="{% url 'signup' %}" class="button primary">회원가입</a></li>
-                    </ul>
-                </form>
-                </div>
-            {% endblock %}
-
-         </div>
-      </div>
-
+                회원가입 완료~
+                <p><a href ="{% url 'index' %}">홈페이지로 이동<a></p>
+{% endblock %}
       <!-- Sidebar -->
       <div id="sidebar">
          <div class="inner">
