@@ -19,10 +19,3 @@ class Album(models.Model): #사진첩
     pic = models.ImageField(null = True, upload_to="%Y/%m/%d")
     user = models.ForeignKey(User,on_delete=models.CASCADE)
 
-class Product(models.Model): #제품정보item
-    pdname = models.CharField(max_length = 100, null = True)
-    brand = models.CharField(max_length = 100, null = True)
-    price =   models.IntegerField(null = True)
-    pic = models.ImageField(null = True, upload_to="%Y/%m/%d")
-    star = models.IntegerField(null = True) #별점
-    #pdtype = models.ForeignKey(Type, on_delete = models.CASCADE) import 꼭 해주기!
