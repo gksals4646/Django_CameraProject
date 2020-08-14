@@ -72,6 +72,16 @@ def mypage(request):
 #     return render(request, 'myreview.html')
 
 
+def myinfo(request):
+    return render(request,'myinfo.html')
+
+# def myitem(request):
+#     item = MyProduct.objects.all()
+#     if 아이템 있으면:
+#         a = reversed(Picture.objects.filter(User = request.user))
+#         return render(request, 'myitem.html')
+#     else :
+#         return render(request, )
 
     #     product =  models.ForeignKey(Product, on_delete = models.CASCADE)
     # user = models.ForeignKey(User, on_delete = models.CASCADE)
