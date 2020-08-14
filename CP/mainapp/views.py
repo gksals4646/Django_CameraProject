@@ -64,7 +64,7 @@ def search(request):
     search_brand = request.GET['search_name']
     albums_body = album.filter(bodypd__filmb__icontains=search_body)
     albums_lens = album.filter(lenspd__lname__icontains=search_lens)
-    albums_brand = album.filter(brandpd__icontains=search_brand)
+    # albums_brand = album.filter(brandpd__icontains=search_brand)
 
     if albums_body:
         albums = album.filter(bodypd__filmb__icontains=search_body)
@@ -84,3 +84,18 @@ def search(request):
 def album_detail(request,pk):
     album = Album.objects.filter(pk=pk)
     return render(request,'album_detail.html',{'album' : album })
+
+
+#제품 상세 페이지
+def item_detail(request,pk):
+    item = Product.objects.filter(pk=pk) #class에서 product pk로 불러옴
+    bodypd=BodyType.objects.all() #바디불러옴
+    lenspd=LensType.objects.all() #렌즈불러옴
+    if request.method == 'GET':
+        item.pdname = request.GET['pdname'] #제품이름
+        item.brand = request.GET['brand']  #브랜드
+        item.price = request.GET['price']  #가격
+        item.star = request.GET['star']  #별점
+        item.pic = request.FILES['pic']  #해당제품사진
+        item.save() #아이템 안에 다 저장
+    return render(request, 'item_detail', {'item' : item })
