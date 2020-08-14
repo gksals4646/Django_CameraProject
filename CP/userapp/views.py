@@ -62,6 +62,8 @@ def mypage(request):
 def myreview(request):
     user = get_object_or_404(User, pk=pk)
     content = Review.objects.filter(user = user)
+    date= 
+    star=
     return render(request, 'myreview.html')
 
 
