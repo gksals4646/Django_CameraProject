@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from mainapp.models import Review
+from mainapp.models import * 
 from django.contrib import auth
 from .models import *
 from pdapp.models import * # 외부키로쓰는 클래스 import 하려고
@@ -73,10 +73,17 @@ def myreview(request, pk):
 
 #구매상품
 def myitem(request):
-    #user = get_object_or_404(User, pk = pk)#pk받으면 로그인한사람 구분 가능 (ex 3번)
+    #user = get_object_or_404(User, pk = pk) #pk받으면 로그인한사람 구분 가능 (ex 3번)
     item = MyProduct.objects.filter(User = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
     return render(request, 'myitem.html', {
         'item': item
+        })
+
+#내 사진
+def mypic(request):
+    pic = Album.objects.filter(user = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
+    return render(request, 'mypic.html', {
+        'pic': pic
         })
 
 # if request.method == 'POST':

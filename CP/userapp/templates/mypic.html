@@ -5,4 +5,17 @@
 <br>
 <strong style="font-size: 25px;">내 사진첩</strong>
 <hr>
+
+<div id="main">
+    <div class="subject">
+        {% for pic in pic %}
+        <div class = "article">
+            <a href="#"><img src="{{ pic.pic.url }}"  alt="dd" width="100px" height="90px"></a>
+            바디 정보 : {{ pic.pdname }}
+            렌즈 정보 : {{ pic.brand }}
+            등록일 : {{ pic.date }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
