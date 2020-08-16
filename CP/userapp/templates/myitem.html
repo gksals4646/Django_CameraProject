@@ -8,15 +8,35 @@
 
 <div id="main">
     <div class="subject">
-        {% for item in item %}
-        <div class = "article">
-            <a href="#"><img src="{{ item.mypd.pic.url }}"  alt="dd" width="100px" height="90px"></a>
-            제품명 : {{ item.mypd.pdname }}
-            제품 브랜드명 : {{ item.mypd.brand }}
-            제품 가격 : {{ item.mypd.price }}원
-
+        
+        <div class="scrollable">
+            <table>
+              <thead>
+                <tr>
+                  <th>ORDER DATE</th>
+                  <th>IMAGE</th>
+                  <th>PRODUCT NAME</th>
+                  <th>PRODUCT BRAND</th>
+                  <th>PRICE</th>
+            
+                </tr>
+              </thead>
+              {% for item in item %}
+              <tbody>
+                <tr>
+                  <td><a href="#"></a>{{ item.date }}</td>
+                  <td><a href="#"><img src="{{ item.mypd.pic.url }}"  alt="dd" width="100px" height="90px"></a></td>
+                  <td>{{ item.mypd.pdname }}</td>
+                  <td>{{ item.mypd.brand }}</td>
+                  <td>{{ item.mypd.price }}원</td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        
         </div>
-        {% endfor %}
+        
     </div>
     <a href="{% url 'item_body' %}">상품 구경 가기</a>
     

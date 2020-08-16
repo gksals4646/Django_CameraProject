@@ -6,16 +6,54 @@
 <strong style="font-size: 25px;">내 사진첩</strong>
 <hr>
 
-<div id="main">
-    <div class="subject">
-        {% for pic in pic %}
-        <div class = "article">
-            <a href="#"><img src="{{ pic.pic.url }}"  alt="dd" width="100px" height="90px"></a>
-            바디 정보 : {{ pic.pdname }}
-            렌즈 정보 : {{ pic.brand }}
-            등록일 : {{ pic.date }}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../assets/css/main.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body id="top">
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <!-- ################################################################################################ -->
+    <div class="wrapper row3">
+      <main class="hoc container clear"> 
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+        <div class="content"> 
+          <!-- ################################################################################################ -->
+          <div id="gallery">
+            <header class="heading">{{ request.user.username }}님이 게시한 사진</header>
+            {% for pic in pic %}
+
+            <figure>
+              
+              <ul class="nospace clear">
+                <li class="one_quarter first"><a href="#"><img src="{{ pic.pic.url }}"  alt="dd" width="250px" height="250px"></a>
+                    <br>바디 정보 : {{ pic.bodypd }}
+                    <p>렌즈 정보 : {{ pic.lenspd }}</p>
+                    <p>등록일 : {{ pic.date }}</p>
+                </li>
+                <!--<li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter first"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter first"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>
+                <li class="one_quarter"><a href="#"><img src="{% static 'images/01.png' %}" alt=""></a></li>-->
+              </ul>
+              
+            </figure>
+          </div>
+          
+          <!-- ################################################################################################ -->
         </div>
+        <!-- ################################################################################################ -->
         {% endfor %}
-    </div>
-</div>
+
 {% endblock %}
+
+
