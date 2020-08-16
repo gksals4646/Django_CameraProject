@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from mainapp.models import Review
 from django.contrib import auth
 from .models import *
+from pdapp.models import * # 외부키로쓰는 클래스 import 하려고
 
 # Create your views here.
 
@@ -69,3 +70,50 @@ def myreview(request, pk):
     user = get_object_or_404(User, pk=pk)
     content = Review.objects.all()
     return render(request, 'myreview.html', {'user':user})
+
+#구매상품
+def myitem(request):
+    #user = get_object_or_404(User, pk = pk)#pk받으면 로그인한사람 구분 가능 (ex 3번)
+    item = MyProduct.objects.filter(User = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
+    return render(request, 'myitem.html', {
+        'item': item
+        
+        })
+
+# if request.method == 'POST':
+#         guestname = request.user #로그인한사람
+#         guest_text = request.POST['guest_text']
+#         receiver_name = cyuser #미니홈피 주인 (받는 사람)
+
+#         guestbooks = Guestbook() #새로운 객체를 만들겠다
+
+#         guestbooks.guestname = guestname
+#         guestbooks.guest_text = guest_text
+#         guestbooks.receiver_name = receiver_name
+#         guestbooks.save()
+#         return render(request, 'main/guest_detail.html',{
+#             'cyuser':cyuser,
+#             'guestbook':guestbook
+#         })
+#     else:
+#         return render(request,'main/guest_detail.html',{
+#             'cyuser':cyuser,
+#             'guestbook':guestbook
+#         })
+
+# def updateProfile(request):
+#     if request.method == 'POST' and 'imgs' in request.FILES:
+#         user = request.user
+#         contents = request.POST['contents']
+#         imgs = request.FILES['imgs']
+#         user.profile_img = imgs
+#         user.contents = contents
+#         user.save()
+#         return render(request,'main/updateProfile.html', {'done':'사진과 소개가 업데이트 되었습니다.'})
+#     elif request.method == 'POST':
+#         user = request.user
+#         contents = request.POST['contents']
+#         user.contents = contents
+#         user.save()
+#         return render(request,'main/updateProfile.html', {'done':'소개가 업데이트 되었습니다.'})
+#     return render(request,'main/updateProfile.html')

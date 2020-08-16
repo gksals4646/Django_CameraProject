@@ -5,4 +5,15 @@
 <br>
 <strong style="font-size: 25px;">구매상품</strong>
 <hr>
+
+<div id="main">
+    <div class="subject">
+        {{ item }}ㅎ하ㅏ하
+        {% for item in item %}
+            {{ item.date }}
+        {% endfor %}
+    </div>
+    <a href="{% url 'item_body' %}">상품 구경 가기</a>
+    
+</div>
 {% endblock %}
