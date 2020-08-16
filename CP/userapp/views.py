@@ -77,7 +77,6 @@ def myitem(request):
     item = MyProduct.objects.filter(User = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
     return render(request, 'myitem.html', {
         'item': item
-        
         })
 
 # if request.method == 'POST':

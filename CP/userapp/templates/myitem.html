@@ -8,9 +8,14 @@
 
 <div id="main">
     <div class="subject">
-        {{ item }}ㅎ하ㅏ하
         {% for item in item %}
-            {{ item.date }}
+        <div class = "article">
+            <a href="#"><img src="{{ item.mypd.pic.url }}"  alt="dd" width="100px" height="90px"></a>
+            제품명 : {{ item.mypd.pdname }}
+            제품 브랜드명 : {{ item.mypd.brand }}
+            제품 가격 : {{ item.mypd.price }}원
+
+        </div>
         {% endfor %}
     </div>
     <a href="{% url 'item_body' %}">상품 구경 가기</a>
