@@ -3,7 +3,7 @@ from .models import Product
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Album,Review
 from pdapp.models import *
-from django.db.models import Avg
+from django.db.models import Avg, Max, Min, Sum
 # Create your views here.
 
 # 메인 페이지
@@ -22,7 +22,14 @@ def item_lens(request):
 
 # 랭킹 페이지
 def rank(request):
-    return render(request, 'rank.html')
+    stars=Star.objects.all()
+    body=Product.objects.filter(lenstype=None)
+    lens=Product.objects.filter(bodytype=None)
+    prod=Product.objects.all()
+    
+    result=Star.objects.values('pdname').annotate(avg_stars=Avg('star')).order_by('-avg_stars')
+    return render(request,'rank.html', {'result':result,'body':body,'lens':lens,'prod':prod})
+
 
 
 def item(request):
