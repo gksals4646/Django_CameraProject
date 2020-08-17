@@ -21,9 +21,13 @@
             <br>
             <strong>가격 : {{ product_body.price }}원</strong>
             <br>
-            {% if star.pdname.pdname == product_body.pdname %}
-            <strong>평점 : {{ star }}</strong>
-            {% endif %}
+            {% if stars.pdname == product_body %}
+            {% for pdname, avg in avg_star.items %}
+            
+            <strong>평점 : {{ avg }}</strong>
+
+            {% endfor %}
+            {% endif%}
     </div>
 </div>
 <hr>

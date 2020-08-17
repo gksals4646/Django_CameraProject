@@ -23,6 +23,14 @@ class Product(models.Model):
     bodytype = models.ForeignKey(BodyType, null = True , blank = True,  on_delete = models.CASCADE)
     lenstype = models.ForeignKey(LensType, null = True , blank = True,  on_delete = models.CASCADE)
 
+    # 이름 가져옴
+    def __str__(self):
+        return self.pdname
+
 class Star(models.Model):
     pdname = models.ForeignKey(Product, on_delete = models.CASCADE)
     star = models.IntegerField(null = True)
+
+    # {}에 묶어 같이 가져옴
+    def __str__(self):
+        return '{} {}'.format(self.pdname.pdname, self.star)

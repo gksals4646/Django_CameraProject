@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Product
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Album,Review
@@ -13,11 +12,17 @@ def index(request):
 
 # 상품 페이지
 def item_body(request):
+    product = Product.objects.all()
     product_body = Product.objects.filter(lenstype=None)
 
-    star = Star.objects.values('pdname').annotate(Avg('star'))
-                  
-    return render(request, 'item_body.html', {'product_body':product_body, 'star':star})
+    stars = Star.objects.values('pdname').annotate(Avg('star'))
+    avg_star = {}
+    
+    for star in stars:
+        pdname = Product.objects.get(pk=star['pdname'])
+        avg_star[pdname.pdname] = star['star__avg'] 
+
+    return render(request, 'item_body.html', {'product_body':product_body, 'stars':stars, 'avg_star':avg_star, 'product':product})
 
 def item_lens(request):
     product_lens = Product.objects.filter(bodytype='2')
