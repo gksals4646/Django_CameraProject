@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from mainapp.models import Review
+from mainapp.models import Review, Album
 from django.contrib import auth
 from .models import *
 
@@ -64,8 +64,15 @@ def mypage(request):
 def myinfo(request):
     return render(request,'myinfo.html')
 
-#내리뷰
+#내리뷰 (내용, 날짜, 별점, 카메라 종류 추가하기)
 def myreview(request, pk):
     user = get_object_or_404(User, pk=pk)
     content = Review.objects.all()
-    return render(request, 'myreview.html', {'user':user})
+    date= Review.objects.all()
+    return render(request, 'myreview.html',  {'user':user , 'content':content})
+
+def mypic(request):
+    pic = Album.objects.filter(user = request.user) 
+    return render(request, 'mypic.html', {
+        'pic': pic
+        })
