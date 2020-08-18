@@ -14,14 +14,14 @@
         <p>바디타입</p>
         <select name=bodypd>
             {% for bodypd in bodypd %}
-            <option>{{ bodypd.filmb }}</option>
+            <option>{{ bodypd.pdname }}</option>
             {% endfor %}
         </select>
 
         <p>렌즈타입</p>
         <select name=lenspd>
             {% for lenspd in lenspd %}
-            <option>{{ lenspd.lname }}</option>
+            <option>{{ lenspd.pdname }}</option>
             {% endfor %}
         </select>
        

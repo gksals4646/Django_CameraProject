@@ -36,7 +36,8 @@ class Product(models.Model):
 class Star(models.Model):
     pdname = models.ForeignKey(Product, on_delete = models.CASCADE)
     star = models.IntegerField(null = True)
-    # num = models.IntegerField(null = True)
+    pdtype = models.ForeignKey(Type,null=True, on_delete=models.CASCADE)
+
 
     class Meta:
         ordering=['-star']
