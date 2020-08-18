@@ -3,7 +3,7 @@ from .models import Product
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Album,Review
 from pdapp.models import *
-from django.db.models import Avg, Max, Min, Sum
+from django.db.models import Avg
 # Create your views here.
 
 # 메인 페이지
