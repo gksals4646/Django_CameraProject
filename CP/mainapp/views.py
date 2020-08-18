@@ -12,24 +12,28 @@ def index(request):
 
 # 상품 페이지
 def item_body(request):
-    product_body = Product.objects.filter(lenstype=None)
+    product_body = Product.objects.filter(pdtype_id=1)#id1이 바디
     star = Star.objects.all()
     return render(request, 'item_body.html', {'product_body':product_body, 'star':star})
 
 def item_lens(request):
-    product_lens = Product.objects.filter(bodytype=None)
+    product_lens = Product.objects.filter(pdtype_id=2) #id2가 렌즈
     return render(request, 'item_lens.html', {'product_lens':product_lens})
 
 # 랭킹 페이지
 def rank(request):
     stars=Star.objects.all()
-    body=Product.objects.filter(lenstype=None)
-    lens=Product.objects.filter(bodytype=None)
-    
-    result=Star.objects.values('pdname').annotate(avg_stars=Avg('star')).order_by('-avg_stars') 
+    body=Product.objects.filter(pdtype=1) #id1이 바디
+    lens=Product.objects.filter(pdtype=2) #id2가 렌즈
+
+    body_star=Star.objects.filter(pdtype_id=1)
+    lens_star=Star.objects.filter(pdtype_id=2)
+
+    result_body = body_star.values('pdname').annotate(avg_stars=Avg('star')).order_by('-avg_stars')
+    result_lens = lens_star.values('pdname').annotate(avg_stars=Avg('star')).order_by('-avg_stars')
     #pdname 별로 star의 평균값을 avg_stars에 넣고,내림차순정렬
 
-    return render(request,'rank.html', {'result':result,'body':body,'lens':lens})
+    return render(request,'rank.html', {'result_body':result_body,'result_lens':result_lens,'body':body,'lens':lens})
 
 
 
@@ -42,19 +46,20 @@ def album(request):
     return render(request, 'album.html',{'albums':albums})
 
 def create_album(request):
-    bodypd=BodyType.objects.all()
-    lenspd=LensType.objects.all()
+    bodypd=Product.objects.filter(pdtype='바디')
+    lenspd=Product.objects.filter(pdtype='렌즈')
+
     if 'img' in request.FILES:
-        btype=BodyType.objects.get(filmb=request.POST['bodypd'])
-        ltype=LensType.objects.get(lname=request.POST['lenspd'])
+        body=Product.objects.get(pdtype=request.POST['bodypd'])
+        lens=Product.objects.get(pdtype=request.POST['lenspd'])
         album = Album()
         album.user = request.user
-        album.bodypd = btype
-        album.lenspd = ltype
+        album.bodypd= body
+        album.lenspd= lens
         album.pic = request.FILES['img']
         album.save()
         return render(request,'create_album.html',{'done' :'donedone'})
-    return render(request,'create_album.html',{'bodypd' : bodypd , 'lenspd' : lenspd})
+    return render(request,'create_album.html',{'bodypd' : bodypd ,'lenspd' : lenspd })
 
 # 사진 삭제 함수
 def delete_album(request):
@@ -65,12 +70,11 @@ def delete_album(request):
 
 def search(request):
     album = Album.objects.all()
-    search_body = request.GET['search_name'] 
-    search_lens = request.GET['search_name']
-    search_brand = request.GET['search_name']
-    albums_body = album.filter(bodypd__filmb__icontains=search_body)
-    albums_lens = album.filter(lenspd__lname__icontains=search_lens)
-    # albums_brand = album.filter(brandpd__icontains=search_brand)
+    search = request.GET['search_name'] 
+
+    albums_body = album.filter(bodypd__pdname__icontains=search)
+    albums_lens = album.filter(lenspd__pdname__icontains=search)
+    # albums = album.filter(brandpd__icontains=search_brand)
 
     if albums_body:
         albums = album.filter(bodypd__filmb__icontains=search_body)
@@ -91,12 +95,14 @@ def album_detail(request,pk):
     album = Album.objects.filter(pk=pk)
     return render(request,'album_detail.html',{'album' : album })
 
+#이 위까지 수정한 모델로 했음 0818 16:54
+
 
 #제품 상세 페이지
 def item_detail(request,pk):
     item = Product.objects.filter(pk=pk) #class에서 product pk로 불러옴
-    bodypd=BodyType.objects.all() #바디불러옴
-    lenspd=LensType.objects.all() #렌즈불러옴
+    # bodypd=BodyType.objects.all() #바디불러옴
+    # lenspd=LensType.objects.all() #렌즈불러옴
     if request.method == 'GET':
         item.pdname = request.GET['pdname'] #제품이름
         item.brand = request.GET['brand']  #브랜드

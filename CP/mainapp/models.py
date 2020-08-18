@@ -13,8 +13,8 @@ class Review(models.Model):
     star= models.IntegerField(null = True) #별점
 
 class Album(models.Model): #사진첩
-    bodypd = models.ForeignKey(BodyType , null = True, on_delete = models.CASCADE) #카메라바디본체,종류
-    lenspd = models.ForeignKey(LensType , null = True, on_delete = models.CASCADE)
+    bodypd = models.ForeignKey(Product , null = True, on_delete = models.CASCADE, related_name='bodypd') #Product에서 두개 선택해랑
+    lenspd = models.ForeignKey(Product , null = True, on_delete = models.CASCADE, related_name='lenspd')
     date = models.DateField(null = True, auto_now=True)
     pic = models.ImageField(null = True, upload_to="%Y/%m/%d")
     user = models.ForeignKey(User,on_delete=models.CASCADE)
