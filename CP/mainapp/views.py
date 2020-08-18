@@ -25,9 +25,10 @@ def rank(request):
     stars=Star.objects.all()
     body=Product.objects.filter(lenstype=None)
     lens=Product.objects.filter(bodytype=None)
-    
     result=Star.objects.values('pdname').annotate(avg_stars=Avg('star')).order_by('-avg_stars') 
-    #pdname 별로 star의 평균값을 avg_stars에 넣고,내림차순정렬
+    # for result in result:
+    #     if 
+    # #pdname 별로 star의 평균값을 avg_stars에 넣고,내림차순정렬
 
     return render(request,'rank.html', {'result':result,'body':body,'lens':lens})
 
@@ -105,3 +106,4 @@ def item_detail(request,pk):
         item.pic = request.FILES['pic']  #해당제품사진
         item.save() #아이템 안에 다 저장
     return render(request, 'item_detail', {'item' : item })
+
