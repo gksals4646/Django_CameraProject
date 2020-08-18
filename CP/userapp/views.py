@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from mainapp.models import * 
+from mainapp.models import Review, Album
 from django.contrib import auth
 from .models import *
 from pdapp.models import * # 외부키로쓰는 클래스 import 하려고
@@ -65,7 +65,7 @@ def mypage(request):
 def myinfo(request):
     return render(request,'myinfo.html')
 
-#내리뷰
+#내리뷰 (내용, 날짜, 별점, 카메라 종류 추가하기)
 def myreview(request, pk):
     user = get_object_or_404(User, pk=pk)
     content = Review.objects.all()
@@ -79,47 +79,14 @@ def myitem(request):
         'item': item
         })
 
-#내 사진
+def myreview(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    content = Review.objects.all()
+    date= Review.objects.all()
+    return render(request, 'myreview.html',  {'user':user , 'content':content})
+
 def mypic(request):
-    pic = Album.objects.filter(user = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
+    pic = Album.objects.filter(user = request.user) 
     return render(request, 'mypic.html', {
         'pic': pic
         })
-
-# if request.method == 'POST':
-#         guestname = request.user #로그인한사람
-#         guest_text = request.POST['guest_text']
-#         receiver_name = cyuser #미니홈피 주인 (받는 사람)
-
-#         guestbooks = Guestbook() #새로운 객체를 만들겠다
-
-#         guestbooks.guestname = guestname
-#         guestbooks.guest_text = guest_text
-#         guestbooks.receiver_name = receiver_name
-#         guestbooks.save()
-#         return render(request, 'main/guest_detail.html',{
-#             'cyuser':cyuser,
-#             'guestbook':guestbook
-#         })
-#     else:
-#         return render(request,'main/guest_detail.html',{
-#             'cyuser':cyuser,
-#             'guestbook':guestbook
-#         })
-
-# def updateProfile(request):
-#     if request.method == 'POST' and 'imgs' in request.FILES:
-#         user = request.user
-#         contents = request.POST['contents']
-#         imgs = request.FILES['imgs']
-#         user.profile_img = imgs
-#         user.contents = contents
-#         user.save()
-#         return render(request,'main/updateProfile.html', {'done':'사진과 소개가 업데이트 되었습니다.'})
-#     elif request.method == 'POST':
-#         user = request.user
-#         contents = request.POST['contents']
-#         user.contents = contents
-#         user.save()
-#         return render(request,'main/updateProfile.html', {'done':'소개가 업데이트 되었습니다.'})
-#     return render(request,'main/updateProfile.html')

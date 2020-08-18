@@ -260,3 +260,26 @@
 			});
 
 })(jQuery);
+
+
+
+const toggleBtn=document.querySelector('.navbar__toogleBtn');
+
+toggleBtn.addEventListener('click', ()=>{
+    menu.classList.toggle('active');
+    icons.classList.toggle('active');
+});
+
+
+$(document).ready(function(){
+  
+    // fullpage customization
+    $('#fullpage').fullpage({
+      sectionSelector: '.section',
+      navigation: true,
+      slidesNavigation: true,
+      css3: true,
+      controlArrows: false    
+    }); 
+    
+  });

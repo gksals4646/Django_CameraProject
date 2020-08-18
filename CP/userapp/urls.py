@@ -9,6 +9,7 @@ urlpatterns = [
     path('mypage/', views.mypage, name = 'mypage'),
     path('mypic/', views.mypic, name = 'mypic'),
     path('myitem/', views.myitem, name = 'myitem'),
+    #path('myitem/', views.myitem, name = 'myitem'),
     path('myinfo/', views.myinfo, name = 'myinfo'),
     path('myreview/<int:pk>', views.myreview, name='myreview'),
 ]
