@@ -90,3 +90,59 @@ def album_detail(request,pk):
 def item_detail(request,pk):
     item = Product.objects.filter(pk=pk) #class에서 product pk로 불러옴
     return render(request, 'item_detail.html', {'item' : item })
+
+
+
+def buy(request, pk):
+    if request.method == 'POST':
+
+        item = Product.objects.filter(pk=pk)
+        countbuy=request.POST['countbuy']
+        dcheck=request.POST['dcheck']
+        pay=request.POST['pay']
+        pdsale=request.POST['pdsale']
+
+        buy=Buy()
+        buy.user=request.user
+        buy.countbuy=countbuy
+        buy.dcheck=dcheck #배송중 배송완료
+        buy.pay=pay #카드결제 무통장입금
+        buy.product=item
+        item.pdsale += user.countbuy #상품 판매량에 중간변수 만큼 더해줌 즉, 구매완료된 상품수
+        buy.save()
+
+        item.pdsale += countbuy
+        item.save()
+        
+        #else : #구매하지않으면
+        return render(request, 'buy.html')
+    return render(request, 'buy.html')
+
+
+
+
+        #전체취소하면 내려가는 함수
+def not_buy(request, pk):
+    if request.method == 'POST':
+
+        item = Product.objects.filter(pk=pk)
+        countbuy=request.POST['countbuy']
+        dcheck=request.POST['dcheck']
+        pay=request.POST['pay']
+        pdsale=request.POST['pdsale']
+
+        buy=Buy()
+        buy.user=request.user
+        buy.countbuy=countbuy
+        buy.dcheck=dcheck #배송중 배송완료
+        buy.pay=pay #카드결제 무통장입금
+        buy.product=item
+        item.pdsale -= user.countbuy #상품 판매량에 중간변수 만큼 더해줌 즉, 구매완료된 상품수
+        buy.save()
+
+        item.pdsale -= countbuy
+        item.save()
+        
+        #else : #구매하지않으면
+        return render(request, 'not_buy.html')
+    return render(request, 'not_buy.html')

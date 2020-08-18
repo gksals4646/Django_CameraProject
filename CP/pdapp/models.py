@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 # from userapp.models import User
 
 # Create your models here.
@@ -21,6 +22,8 @@ class Product(models.Model):
     star = models.IntegerField(null = True) #별점
     bodytype = models.ForeignKey(BodyType, null = True , on_delete = models.CASCADE)
     lenstype = models.ForeignKey(LensType, null = True , on_delete = models.CASCADE)
+    pdsale = models.IntegerField(null = True)#상품판매량(구매할때마다 하나씩 오르게 - 싸이월드 투데이처럼?) 
+    countbuy = models.IntegerField(null=True) #구매수량 외래키로
 
 
 
