@@ -25,10 +25,12 @@ class Product(models.Model):
     brand = models.CharField(max_length = 100, null = True)
     price = models.IntegerField(null = True)
     pic = models.ImageField(null = True, upload_to="%Y/%m/%d")
-    # star = models.IntegerField(null = True) #별점
-    pdtype = models.ForeignKey(Type,null=True, on_delete=models.CASCADE)
-    # bodytype = models.ForeignKey(BodyType, null = True , blank = True,  on_delete = models.CASCADE)
-    # lenstype = models.ForeignKey(LensType, null = True , blank = True,  on_delete = models.CASCADE)
+    star = models.IntegerField(null = True) #별점
+    bodytype = models.ForeignKey(BodyType, null = True , on_delete = models.CASCADE)
+    lenstype = models.ForeignKey(LensType, null = True , on_delete = models.CASCADE)
+    pdsale = models.IntegerField(null = True)#상품판매량(구매할때마다 하나씩 오르게 - 싸이월드 투데이처럼?) 
+    countbuy = models.IntegerField(null=True) #구매수량 외래키로
+
     def __str__(self):
         return self.pdname
 
