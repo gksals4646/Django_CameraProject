@@ -13,6 +13,8 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('album_detail/<int:pk>', views.album_detail, name='album_detail'),
     path('item_detail/<int:pk>', views.item_detail, name='item_detail'),
+    path('buy/<int:pk>', views.buy, name='buy'),
+    path('not_buy/<int:pk>', views.not_buy, name='not_buy'),
 
     # path('', views.index, name='index'),
     # path('item/', views.item, name='item'),

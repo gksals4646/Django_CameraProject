@@ -101,13 +101,59 @@ def album_detail(request,pk):
 #제품 상세 페이지
 def item_detail(request,pk):
     item = Product.objects.filter(pk=pk) #class에서 product pk로 불러옴
-    # bodypd=BodyType.objects.all() #바디불러옴
-    # lenspd=LensType.objects.all() #렌즈불러옴
-    if request.method == 'GET':
-        item.pdname = request.GET['pdname'] #제품이름
-        item.brand = request.GET['brand']  #브랜드
-        item.price = request.GET['price']  #가격
-        item.star = request.GET['star']  #별점
-        item.pic = request.FILES['pic']  #해당제품사진
-        item.save() #아이템 안에 다 저장
-    return render(request, 'item_detail', {'item' : item })
+    return render(request, 'item_detail.html', {'item' : item })
+
+
+def buy(request, pk):
+    if request.method == 'POST':
+
+        item = Product.objects.filter(pk=pk)
+        countbuy=request.POST['countbuy']
+        dcheck=request.POST['dcheck']
+        pay=request.POST['pay']
+        pdsale=request.POST['pdsale']
+
+        buy=Buy()
+        buy.user=request.user
+        buy.countbuy=countbuy
+        buy.dcheck=dcheck #배송중 배송완료
+        buy.pay=pay #카드결제 무통장입금
+        buy.product=item
+        item.pdsale += user.countbuy #상품 판매량에 중간변수 만큼 더해줌 즉, 구매완료된 상품수
+        buy.save()
+
+        item.pdsale += countbuy
+        item.save()
+        
+        #else : #구매하지않으면
+        return render(request, 'buy.html')
+    return render(request, 'buy.html')
+
+
+
+
+        #전체취소하면 내려가는 함수
+def not_buy(request, pk):
+    if request.method == 'POST':
+
+        item = Product.objects.filter(pk=pk)
+        countbuy=request.POST['countbuy']
+        dcheck=request.POST['dcheck']
+        pay=request.POST['pay']
+        pdsale=request.POST['pdsale']
+
+        buy=Buy()
+        buy.user=request.user
+        buy.countbuy=countbuy
+        buy.dcheck=dcheck #배송중 배송완료
+        buy.pay=pay #카드결제 무통장입금
+        buy.product=item
+        item.pdsale -= user.countbuy #상품 판매량에 중간변수 만큼 더해줌 즉, 구매완료된 상품수
+        buy.save()
+
+        item.pdsale -= countbuy
+        item.save()
+        
+        #else : #구매하지않으면
+        return render(request, 'not_buy.html')
+    return render(request, 'not_buy.html')
