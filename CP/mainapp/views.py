@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Product
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Album,Review
@@ -126,11 +125,18 @@ def buy(request, pk):
         item.save()
         
         #else : #구매하지않으면
-        return render(request, 'buy.html')
+        return render(request, 'buy.html', {
+            'item' : item, 
+            'buy' : buy
+            })
     return render(request, 'buy.html')
 
-
-
+def deleteitem(request): 
+    #a = Picture.objects.filter(her = request.user)
+    post_id = request.GET['post_id'] 
+    post = Buy.objects.get(id = post_id)
+    post.delete() #타이틀이나 컨텐츠 저장할 필요없이 삭제만 해주면됨
+    return redirect('buy.html')
 
         #전체취소하면 내려가는 함수
 def not_buy(request, pk):
