@@ -34,3 +34,5 @@ Merge branch 유진아 마이페이지
 석희, 석근
 2020 0818 석근
 자 바꾼 model로 main.views와 main.templates들 수정완료 (item_detail,album_detail 제외) 완료!!!!!!!!!!!!!!!!!랭크도 모두 구현완료
+
+test
