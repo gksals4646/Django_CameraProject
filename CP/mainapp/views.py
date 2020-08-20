@@ -150,7 +150,7 @@ def buy(request, pk):
         item.save()
         
         #else : #구매하지않으면
-        return render(request, 'not_buy.html')
+        return render(request, 'buy.html')
     return render(request, 'buy.html')
 
 
