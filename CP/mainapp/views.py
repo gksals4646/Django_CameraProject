@@ -12,8 +12,8 @@ def index(request):
 
 # 상품 페이지
 def item_body(request):
-    body=Product.objects.filter(pdtype=1) #id1이 바디
-    body2=Star.objects.filter(pdtype_id=1)
+    body=Product.objects.filter(pdtype=4) #id1이 바디
+    body2=Star.objects.filter(pdtype_id=4)
     body_star = body2.values('pdname').annotate(avg_stars=Avg('star'))
 
     return render(request,'item_body.html', {'body_star':body_star,'body':body})
