@@ -3,9 +3,125 @@
 
 {% block contents %}
 <br>
-<strong style="font-size: 25px;">상품 구매</strong>
+<strong style="font-size: 25px;">주문내역</strong>
 <hr>
 
-t상품구매
+<style>
+    #userinfo {
+    display:flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    overflow-x: auto;
+    overflow-y: hidden;
+    }
 
+    #userinfo.tbody
+    {display:flex}
+
+    #userinfo.th,td{display:block}
+</style>
+
+<div id="main">
+    <div class="subject">
+        
+        <div class="scrollable">
+            <table>
+              <thead>
+                <tr>
+                  
+                  <th>IMAGE</th>
+                  <th>PRODUCT NAME</th>
+                  <th>PRODUCT BRAND</th>
+                  <th>QUANTITY</th>
+                  <th>PRICE</th>
+                  <th>DELIVERY</th>
+                  <th>TOTAL</th>
+                  <th>DELETE</th>
+            
+            
+                </tr>
+              </thead>
+              {% for buy in buys %}
+              
+              <tbody>
+                <tr>
+                  
+                  <td><a href="#"><img src="{{  buy.product.pic.url }}"  alt="dd" width="100px" height="90px"></a></td>
+                  <td>{{ buy.product.pdname }}</td>
+                  <td>{{ buy.product.brand }}</td>
+                  <td>{{ buy.countbuy }}</td>
+                  <td>{{ buy.product.price }}원</td>
+                  <td>{{ buy.dcheck }}</td>
+                  <td>{{ buy.product.price }}*{{ buy.countby }}원</td>
+                  <td>
+             
+                    <form action = '{% url "not_buy"  user.pk%} ' style = "display : inline; ">
+                       
+                        
+                        <input  name = 'post_id' type = 'hidden' value = "{{ buy.id }}" >
+                        <button type = 'submit' style = "float:right; border: 1px solid red; background-color: rgba(0,0,0,0); color: red; padding: 5px;">삭제</button>
+                        <p style = 'color : red; font-size: 10px;'></p>
+                           
+                    </form>
+                    
+                  </td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        
+        </div>
+        
+    </div>
+
+    <div class="scrollable">
+    
+        <table id = userinfo>
+          <thead>
+            <tr>
+              
+              <th>IMAGE</th>
+              <th>PRODUCT NAME</th>
+              <th>PRODUCT BRAND</th>
+              <th>QUANTITY</th>
+              <th>PRICE</th>
+              <th>DELIVERY</th>
+              <th>TOTAL</th>
+              <th>DELETE</th>
+        
+        
+            </tr>
+          </thead>
+          {% for buy in buy %}
+          <tbody>
+            <tr>
+              
+              <td><a href="#"><img src="{{ buy.product.pic.url }}"  alt="dd" width="100px" height="90px"></a></td>
+              <td>{{ buy.product.pdname }}</td>
+              <td>{{ buy.product.brand }}</td>
+              <td>{{ buy.countbuy }}</td>
+              <td>{{ buy.product.price }}원</td>
+              <td>{{ buy.dcheck }}</td>
+              <td>{{ buy.product.price }}*{{ buy.countby }}원</td>
+              <td>
+         
+                <form action = '{% url "deletebuy"  %} ' style = "display : inline; ">
+                   
+                    
+                    <input  name = 'post_id' type = 'hidden' value = "{{ buy.id }}" >
+                    <button type = 'submit' style = "float:right; border: 1px solid red; background-color: rgba(0,0,0,0); color: red; padding: 5px;">삭제</button>
+                    <p style = 'color : red; font-size: 10px;'></p>
+                       
+                </form>
+                
+              </td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+    
+    </div>
+</div>
 {% endblock %}
