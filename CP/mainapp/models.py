@@ -7,7 +7,7 @@ from pdapp.models import *
 
 class Review(models.Model):
     product =  models.ForeignKey(Product, on_delete = models.CASCADE)
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    user = models.ForeignKey(User, null = True , on_delete = models.CASCADE)
     date  = models.DateField(null = True, auto_now=True) #리뷰 쓴 날짜
     content  = models.TextField(null = True)
     star = models.IntegerField(null = True) #별점
