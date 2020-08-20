@@ -3,7 +3,7 @@ from .models import Product
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Album,Review
 from pdapp.models import *
-from django.db.models import Avg, Max, Min, Sum
+from django.db.models import Avg
 # Create your views here.
 
 # 메인 페이지
@@ -12,13 +12,19 @@ def index(request):
 
 # 상품 페이지
 def item_body(request):
-    product_body = Product.objects.filter(pdtype_id=1)#id1이 바디
-    star = Star.objects.all()
-    return render(request, 'item_body.html', {'product_body':product_body, 'star':star})
+    body=Product.objects.filter(pdtype=1) #id1이 바디
+    body2=Star.objects.filter(pdtype_id=1)
+    body_star = body2.values('pdname').annotate(avg_stars=Avg('star'))
+
+    return render(request,'item_body.html', {'body_star':body_star,'body':body})
+
 
 def item_lens(request):
-    product_lens = Product.objects.filter(pdtype_id=2) #id2가 렌즈
-    return render(request, 'item_lens.html', {'product_lens':product_lens})
+    lens=Product.objects.filter(pdtype=2) #id2는 렌즈
+    lens2=Star.objects.filter(pdtype_id=2)
+    lens_star = lens2.values('pdname').annotate(avg_stars=Avg('star'))
+
+    return render(request,'item_lens.html', {'lens_star':lens_star,'lens':lens})
 
 # 랭킹 페이지
 def rank(request):

@@ -3,35 +3,42 @@
 
 {% block contents %}
 <br>
-<strong style="font-size: 25px;">상품</strong>&nbsp;&nbsp;&nbsp;Item
+<strong style="font-size: 25px;">상품</strong>&nbsp;&nbsp;&nbsp;Item&nbsp;&nbsp;&nbsp;바디
 <hr>
 
 
-{% for product_body in product_body %}
+{% for body_star in body_star %}
+{% if body_star %}
+{% for body in body %}
+{% if body.id == body_star.pdname %}
 
 <div class="row" style="text-align: left;">
     <div class="col">
-        <a href="#"><img src="{{ product_body.pic.url }}" width="250" height="250" alt="" /></a>
+        <a href="#"><img src="{{ body.pic.url }}" width="250" height="250" alt="" /></a>
     </div>
     <div class="col" style="margin-left: 80px;">
         <br>
         <br>
-        <h3>{{ product_body.pdname }}</h2>
-            <strong>제조사 : {{ product_body.brand }}</strong>
+        <h3>{{ body.pdname }}</h2>
+            <strong>제조사 : {{ body.brand }}</strong>
             <br>
-            <strong>가격 : {{ product_body.price }}원</strong>
+            <strong>가격 : {{ body.price }}원</strong>
             <br>
             <a href="{% url 'item_detail' product_body.pk %}">상세정보</a>
             <br>
             {% for star in star %}
             {% if star.pdname == product_body %}
-            <strong>평점 : {{ star.star }}</strong>
+            <strong>평점 : {{ body_star.avg_stars }}</strong>
             {% endif %}
             {% endfor %}
+            
     </div>
 </div>
 <hr>
 
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endfor %}
 
 

@@ -35,14 +35,16 @@ class Product(models.Model):
     def __str__(self):
         return self.pdname
 
-
 class Star(models.Model):
     pdname = models.ForeignKey(Product, on_delete = models.CASCADE)
-    star = models.IntegerField(null = True)
     pdtype = models.ForeignKey(Type,null=True, on_delete=models.CASCADE)
+    star = models.IntegerField(null = True)
 
 
     class Meta:
         ordering=['-star']
 
 
+    # {}에 묶어 같이 가져옴
+    def __str__(self):
+        return '{} {}'.format(self.pdname.pdname, self.star)
