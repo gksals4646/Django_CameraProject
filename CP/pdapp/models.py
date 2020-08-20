@@ -41,8 +41,8 @@ class Star(models.Model):
     star = models.IntegerField(null = True)
 
 
-    class Meta:
-        ordering=['-star']
+    # class Meta:
+    #     ordering=['-star']
 
 
     # {}에 묶어 같이 가져옴
