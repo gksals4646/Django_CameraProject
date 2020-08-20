@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Product
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Album,Review
+from .models import *
 from pdapp.models import *
 from django.db.models import Avg
 # Create your views here.
@@ -129,14 +129,13 @@ def create_review(request):
             return redirect('item_lens')
 
 def buy(request, pk):
+    buys = Buy.objects.filter(pk=pk)
     if request.method == 'POST':
-
         item = Product.objects.filter(pk=pk)
         countbuy=request.POST['countbuy']
         dcheck=request.POST['dcheck']
         pay=request.POST['pay']
         pdsale=request.POST['pdsale']
-
         buy=Buy()
         buy.user=request.user
         buy.countbuy=countbuy
@@ -145,13 +144,13 @@ def buy(request, pk):
         buy.product=item
         item.pdsale += user.countbuy #상품 판매량에 중간변수 만큼 더해줌 즉, 구매완료된 상품수
         buy.save()
-
         item.pdsale += countbuy
         item.save()
-        
         #else : #구매하지않으면
-        return render(request, 'buy.html')
-    return render(request, 'buy.html')
+    return render(request, 'buy.html',{
+    'buys':buys
+    })
+
 
 
 
@@ -181,3 +180,11 @@ def not_buy(request, pk):
         #else : #구매하지않으면
         return render(request, 'not_buy.html')
     return render(request, 'not_buy.html')
+
+
+def buy_check(request, pk):
+    buys = Buy.objects.filter(pk=pk)
+    return render(request, 'buy_check.html',{
+    'buys':buys
+    })
+

@@ -16,6 +16,7 @@ urlpatterns = [
     path('buy/<int:pk>', views.buy, name='buy'),
     path('not_buy/<int:pk>', views.not_buy, name='not_buy'),
     path('create_review/',views.create_review, name='create_review'),
+    path('buy_check/<int:pk>', views.buy_check, name='buy_check'),
 
     # path('', views.index, name='index'),
     # path('item/', views.item, name='item'),
