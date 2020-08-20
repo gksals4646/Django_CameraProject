@@ -7,8 +7,14 @@ from django.db.models import Avg
 # Create your views here.
 
 # 메인 페이지
-def index(request):
-    return render(request, 'index.html')
+def index(request): #랭킹불러옴
+    stars=Star.objects.all()
+    rank_all = stars.values('pdname').annotate(avg_stars=Avg('star')).order_by('-avg_stars')
+    #pdname 별로 star의 평균값을 avg_stars에 넣고,내림차순정렬
+    product=Product.objects.all()
+    first=rank_all[0]
+
+    return render(request,'index.html', {'rank_all' : rank_all , 'product' : product, 'first' : first})
 
 # 상품 페이지
 def item_body(request):
