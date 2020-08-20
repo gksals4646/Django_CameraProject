@@ -30,11 +30,12 @@
     <div class="content">
       <h2>{{ item.pdname }}</h2>
       <p style = "text-align: center;">
-      <img src="{% static 'images/sonylens.jpg' %}"  alt="" style= "width : 250px; height:300px;" />
-      <img src="{% static 'images/sonylens2.jpg' %}"  alt="" style= "width : 250px; height:300px;" />
+
+      <img src="{{ item.pic.url }}"  alt="" style= "width : 250px; height:300px;" />
+
       </p>
       <p>풀프레임미러리스용 / 표준줌렌즈 / 소니FE / 아트렌즈(최상급) / 15군 / 19매 / 밝기:F2.8 / 최단촬영거리:18cm / 필터구경:82mm / 방진방적 / 스테핑모터 / 원형조리개 / 비구면 / 저분산 / 인물용렌즈 / 무게:835g / 애칭:시계륵 / 줌 잠금스위치 / AFL버튼 / 멀티코팅 / 나노다공성코팅</p>
-      <h2>Product Detail</h2>
+      <h2>상품 상세내용</h2>
       <div class="scrollable">
         <table>
           <thead>
@@ -47,7 +48,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><a href="#"></a>풀프레임미러리스용</td>
+              <td>풀프레임미러리스용</td>
               <td>소니FE</td>
               <td>표준줌렌즈</td>
               <td>아트렌즈(최상급)</td>
@@ -61,16 +62,15 @@
           {% for review in review %}
           <li>
             <article>
-                By <a href="#">{{ review.user }}</a><br><time>{{ review.date }}</time>
+                <strong><a href="#">{{ review.user }}</a></strong>
+                <time>{{ review.date }}</time>
               <div class="comcont">
-                <br>
-                <p>Product : {{ review.product }}</p>
-                <p>Comment : {{ review.content }}</p>
+                <p>상품명 : {{ review.product }}</p>
+                <p>{{ review.content }}</p>
                 <!-- <img src="{% static 'images/review1.jpg' %}" alt=""  style= "width :200px; height:150px; " />float : left 사진 왼쪽에 정렬하고싶으면~ -->
               </div>
             </article>
           </li>
-          
           {% endfor %}
         </ul>
         <h2>Write A Review</h2>
