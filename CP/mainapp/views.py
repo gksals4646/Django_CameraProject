@@ -46,12 +46,12 @@ def album(request):
     return render(request, 'album.html',{'albums':albums})
 
 def create_album(request):
-    bodypd=Product.objects.filter(pdtype='바디')
-    lenspd=Product.objects.filter(pdtype='렌즈')
+    bodypd=Product.objects.filter(pdtype_id=1)
+    lenspd=Product.objects.filter(pdtype_id=2)
 
     if 'img' in request.FILES:
-        body=Product.objects.get(pdtype=request.POST['bodypd'])
-        lens=Product.objects.get(pdtype=request.POST['lenspd'])
+        body=Product.objects.get(pdname=request.POST['bodypd'])
+        lens=Product.objects.get(pdname=request.POST['lenspd'])
         album = Album()
         album.user = request.user
         album.bodypd= body
@@ -98,11 +98,29 @@ def album_detail(request,pk):
 #이 위까지 수정한 모델로 했음 0818 16:54
 
 
-#제품 상세 페이지
 def item_detail(request,pk):
     item = Product.objects.filter(pk=pk) #class에서 product pk로 불러옴
-    return render(request, 'item_detail.html', {'item' : item })
+    review = Review.objects.filter(product_id=pk)
+    return render(request, 'item_detail.html', {'item' : item ,'review':review})
 
+def create_review(request):
+    #가져온거지금 user , pdname , comment,star
+    if request.method=='POST':
+        product=Product.objects.get(pdname=request.POST['pdname'])
+        review=Review()
+        review.user = request.user
+        review.product = product
+        review.content = request.POST['content']
+        review.save()  #리뷰생성
+
+        star=Star()
+        star.pdname=product
+        star.star=int(request.POST['star'])
+        star.save() #별점생성
+        if product.pdtype_id==1:
+            return redirect('item_body')
+        else:
+            return redirect('item_lens')
 
 def buy(request, pk):
     if request.method == 'POST':

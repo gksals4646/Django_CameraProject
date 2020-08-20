@@ -35,4 +35,12 @@ Merge branch 유진아 마이페이지
 2020 0818 석근
 자 바꾼 model로 main.views와 main.templates들 수정완료 (item_detail,album_detail 제외) 완료!!!!!!!!!!!!!!!!!랭크도 모두 구현완료
 
-test
+
+2020 0820 석근
+1. Product 모델
+lenstype bodytype 모델은및외래키는 사용하지않고 Type으로 바디/렌즈로 나눠주기로 함. 
+바디 or 렌즈 만을 선택하는 pdtype Foreignkey (Type) 필드로 통일하고세부 이름은 pdname에 씁니다
+ 외래키이므로 Product에서 타입을 결정할 땐 pdtype_id = 1  or  2  로 사용하기바람. (1 :바디 ,2 : 렌즈)
+ (+lenstype,bodytype , stars (Integer)필드 삭제@)
+2. item_detail 수정 및 리뷰 리스트 뜨도록 추가, 또한 create_review까지 가능하도록 함. 
+3. album_detail 까지 완료

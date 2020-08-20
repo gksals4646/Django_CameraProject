@@ -12,44 +12,28 @@
 </head>
 <body id="top">
 <!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row0">
   <div id="topbar" class="hoc clear"> 
     
   </div>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="wrapper row1">
   
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <div class="bgded overlay" style="background-image:url('../images/demo/backgrounds/01.png');">
   
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
+{% for item in item %}
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div class="content"> 
-      <!-- ################################################################################################ -->
-      <h2>&lt;SIGMA&gt;  A 24-70mm F2.8 DG DN SONY FE용</h2>
+    <div class="content">
+      <h2>{{ item.pdname }}</h2>
       <p style = "text-align: center;">
       <img src="{% static 'images/sonylens.jpg' %}"  alt="" style= "width : 250px; height:300px;" />
       <img src="{% static 'images/sonylens2.jpg' %}"  alt="" style= "width : 250px; height:300px;" />
       </p>
       <p>풀프레임미러리스용 / 표준줌렌즈 / 소니FE / 아트렌즈(최상급) / 15군 / 19매 / 밝기:F2.8 / 최단촬영거리:18cm / 필터구경:82mm / 방진방적 / 스테핑모터 / 원형조리개 / 비구면 / 저분산 / 인물용렌즈 / 무게:835g / 애칭:시계륵 / 줌 잠금스위치 / AFL버튼 / 멀티코팅 / 나노다공성코팅</p>
-      <!--<p>Dapiensociis <a href="#">temper donec auctortortis cumsan</a> et curabitur condis lorem loborttis leo. Ipsumcommodo libero nunc at in velis tincidunt pellentum tincidunt vel lorem.</p>
-      <p>This is a W3C compliant free website template from <a href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a>. For full terms of use of this template please read our <a href="https://www.os-templates.com/template-terms">website template licence</a>.</p>
-      <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more website templates visit our <a href="https://www.os-templates.com/">free website templates</a> section.</p>
-      <p>Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauris enim. Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.</p>-->
       <h2>Product Detail</h2>
       <div class="scrollable">
         <table>
@@ -68,122 +52,65 @@
               <td>표준줌렌즈</td>
               <td>아트렌즈(최상급)</td>
             </tr>
-            <!--<tr>
-              <td>Value 5</td>
-              <td>Value 6</td>
-              <td>Value 7</td>
-              <td><a href="#">Value 8</a></td>
-            </tr>
-            <tr>
-              <td>Value 9</td>
-              <td>Value 10</td>
-              <td>Value 11</td>
-              <td>Value 12</td>
-            </tr>
-            <tr>
-              <td>Value 13</td>
-              <td><a href="#">Value 14</a></td>
-              <td>Value 15</td>
-              <td>Value 16</td>
-            </tr>-->
           </tbody>
         </table>
       </div>
       <div id="comments">
         <h2>Review</h2>
         <ul>
+          {% for review in review %}
           <li>
             <article>
-              <header>
-                <!--<figure class="avatar"><img src="{% static 'images/avatar.png' %}" alt=""></figure>-->
-                <address>
-                By <a href="#">정수빙수</a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-              </header>
+                By <a href="#">{{ review.user }}</a><br><time>{{ review.date }}</time>
               <div class="comcont">
-                
-                <p>body : a7r4sony / lens : SIGMA A 24-70mm F2.8 DG DN SONY FE용</p>
-                <p>lens comment : 색감을 잘 담아줘요</p>
-                <p>body comment : 가벼워서 들고다니기 좋아요</p>
-                <img src="{% static 'images/review1.jpg' %}" alt=""  style= "width :200px; height:150px; " /><!--float : left 사진 왼쪽에 정렬하고싶으면~-->
+                <br>
+                <p>Product : {{ review.product }}</p>
+                <p>Comment : {{ review.content }}</p>
+                <!-- <img src="{% static 'images/review1.jpg' %}" alt=""  style= "width :200px; height:150px; " />float : left 사진 왼쪽에 정렬하고싶으면~ -->
               </div>
-            </article>
-          </li>
-          <!--<div style="clear: both"></div>
-          <li style="clear: both;"> 왼쪽 정렬 적용하고싶을때-->
-          <li>
-            <article>
-              <header>
-        
-                <address>
-                By <a href="#">A Name</a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-              
             </article>
           </li>
           
-          <li>
-            <article>
-              <header>
-                
-                
-                <address>
-                By <a href="#">A Name</a>
-                </address>
-                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-              </header>
-              <div class="comcont">
-                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-              </div>
-            </article>
-          </li>
+          {% endfor %}
         </ul>
         <h2>Write A Review</h2>
-        <form action="#" method="post">
+        <form action="{% url 'create_review' %}" method="post">
+          {% csrf_token %}
           <div class="one_third first">
-            <label for="name">작성자 <span>*</span></label>
-            <input type="text" name="name" id="name" value="" size="22" required>
+            <label for="name">작성자 *</label>
+            <input type="text" name="name" id="name" value="{{ request.user }}" size="22" required readonly>
           </div>
           <div class="one_third">
-            <label for="lenstype">제품 이름 <span>*</span></label>
-            <input type="text" name="lenstype" id="lenstype" value="" size="22" required>
+            <label for="lenstype">제품군 *</label>
+            <input type="text" name="pdname" value="{{ item.pdname }}" size="22" required readonly>
           </div>
-          <div class="one_third"><!--날짜형태 수정안했어 ㅜㅜ-->
-            <label for="bodytype">날짜 <span>*</span></label>
-            <input type="text" name="bodytype" id="bodytype" value="" size="22" required>
+          <div class="block clear"><br>
+            <label for="content">리뷰를 작성해주세요 *</label>
+            <textarea name="content" cols="25" rows="10"></textarea>
           </div>
-          
-          <div class="block clear">
-            <label for="lenscomment">리뷰를 작성해주세요</label>
-            <textarea name="lenscomment" id="lenscomment" cols="25" rows="10"></textarea>
-          </div>
-          <div class="block clear">
-            <label for="bodycomment">별점</label><!--별점형태도 수정안했어-->
-            <textarea name="bodycomment" id="bodycomment" cols="25" rows="10"></textarea>
-          </div>
+          <div class="block clear"><br>
+            <label for="star">별점 *</label>
+            <select name="star">
+              <option value="1">1점</option>
+              <option value="2">2점</option>
+              <option value="3">3점</option>
+              <option value="4">4점</option>
+              <option value="5">5점</option>
+            </select>
+          </div><br>
           <div>
-            <input type="submit" name="submit" value="Submit Form">
+            <input type="submit" name="submit" value="작성 완료">
             &nbsp;
-            <input type="reset" name="reset" value="Reset Form">
+            <input type="reset" name="reset" value="Reset">
           </div>
         </form>
       </div>
-      <!-- ################################################################################################ -->
     </div>
-    <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 
 </body>
+{% endfor %}
 {% endblock %}

@@ -26,10 +26,11 @@ class Product(models.Model):
     price = models.IntegerField(null = True)
     pic = models.ImageField(null = True, upload_to="%Y/%m/%d")
     stars = models.IntegerField(null = True) #별점
-    bodytype = models.ForeignKey(BodyType, null = True , on_delete = models.CASCADE)
-    lenstype = models.ForeignKey(LensType, null = True , on_delete = models.CASCADE)
+    # bodytype = models.ForeignKey(BodyType, null = True , on_delete = models.CASCADE)
+    # lenstype = models.ForeignKey(LensType, null = True , on_delete = models.CASCADE)
     pdsale = models.IntegerField(null = True)#상품판매량(구매할때마다 하나씩 오르게 - 싸이월드 투데이처럼?) 
     countbuy = models.IntegerField(null=True) #구매수량 외래키로
+    pdtype = models.ForeignKey(Type,null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.pdname
