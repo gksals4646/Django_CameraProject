@@ -26,7 +26,6 @@
             <br>
             <a href="{% url 'item_detail' body.pk %}">상세정보</a>
             <br>
-            <a href="{% url 'buy'' body.pk %}">구매하기</a>
             {% for star in star %}
             {% if star.pdname == product_body %}
             <strong>평점 : {{ body_star.avg_stars }}</strong>
