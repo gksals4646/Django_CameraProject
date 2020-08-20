@@ -180,3 +180,11 @@ def not_buy(request, pk):
         #else : #구매하지않으면
         return render(request, 'not_buy.html')
     return render(request, 'not_buy.html')
+
+
+def buy_check(request, pk):
+    buys = Buy.objects.filter(pk=pk)
+    return render(request, 'buy_check.html',{
+    'buys':buys
+    })
+
