@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from mainapp.models import Review, Album
+from mainapp.models import *
 from django.contrib import auth
 from .models import *
 from pdapp.models import * # 외부키로쓰는 클래스 import 하려고
@@ -72,12 +72,20 @@ def myreview(request, pk):
     return render(request, 'myreview.html', {'user':user})
 
 #구매상품
-def myitem(request):
-    #user = get_object_or_404(User, pk = pk) #pk받으면 로그인한사람 구분 가능 (ex 3번)
-    item = MyProduct.objects.filter(User = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
-    return render(request, 'myitem.html', {
-        'item': item
-        })
+
+
+# def myitem(request): myitem에 제품 등록할때는 뜸. 다만 html 을 수정했을 뿐 .. .
+#     #user = get_object_or_404(User, pk = pk) #pk받으면 로그인한사람 구분 가능 (ex 3번)
+#     item = MyProduct.objects.filter(User = request.user) #myproduct 주인이 로그인한사람인것 불러오기 => 이거 하면 오류나는데 안해도되는건가?;;
+#     return render(request, 'myitem.html', {
+#         'item': item
+#         })
+
+def myitem(request, pk):
+    buys = Buy.objects.filter(pk=pk)
+    return render(request, 'myitem.html',{
+    'buys':buys
+    })
 
 def myreview(request, pk):
     user = get_object_or_404(User, pk=pk)

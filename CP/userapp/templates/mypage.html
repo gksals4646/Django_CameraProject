@@ -15,7 +15,7 @@
 
         <strong></strong><th><a href="{% url 'myreview' request.user.pk %}" class="count"><span id="">내 리뷰</span></a><br>        <img src="{% static 'images/review.png' %}" alt="내 리뷰" width=100px></th></strong>
 
-        <strong></strong><th><a href="#" class="count"><span id="">구매 상품</span></a><br>        <img src="{% static 'images/photograph.png' %}" alt="구매 상품" width=100px></th></strong>
+        <strong></strong><th><a href="{% url 'myitem' request.user.pk %}" class="count"><span id="">구매 상품</span></a><br>        <img src="{% static 'images/photograph.png' %}" alt="구매 상품" width=100px></th></strong>
 
         <strong></strong><th><a href="{% url 'mypic' %}" class="count"><span id="">내 사진</span></a><br>        <img src="{% static 'images/album.png' %}" alt="내 사진" width=100px></th></strong>
 
