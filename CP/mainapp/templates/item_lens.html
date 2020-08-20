@@ -29,7 +29,7 @@
                 <br>
                 <strong>가격 : {{ product_lens.price }}원</strong>
                 <br>
-                <a href="{% url 'item_detail' product_lens.pk %}">상세정보</a>
+                <a href="{% url 'item_detail' body.pk %}">상세정보</a>
                 <br>
                 <strong>평점 : {{ lens_star.avg_stars }}</strong>
         </div>
