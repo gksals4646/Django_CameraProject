@@ -28,10 +28,15 @@
   <main class="hoc container clear"> 
     <!-- main body -->
     <div class="content">
-      <h2>{{ item.pdname }}</h2>
+      <h2>{{ item.pdname }}<form action = '{% url "buy" user.pk%} ' style = "display : inline; ">
+          <button type = 'submit' style = "float:right; border: 1px solid red; background-color: rgba(0,0,0,0); color: red; padding: 5px;">결제하기 Go!</button>
+          <p style = 'color : red; font-size: 10px;'></p>
+        </form></h2>
+      
+      <br><br>
       <p style = "text-align: center;">
-      <img src="{% static 'images/sonylens.jpg' %}"  alt="" style= "width : 250px; height:300px;" />
-      <img src="{% static 'images/sonylens2.jpg' %}"  alt="" style= "width : 250px; height:300px;" />
+      <img src="{{ item.pic.url }}"  alt="" style= "width : 500px; " />
+      </body>
       </p>
       <p>풀프레임미러리스용 / 표준줌렌즈 / 소니FE / 아트렌즈(최상급) / 15군 / 19매 / 밝기:F2.8 / 최단촬영거리:18cm / 필터구경:82mm / 방진방적 / 스테핑모터 / 원형조리개 / 비구면 / 저분산 / 인물용렌즈 / 무게:835g / 애칭:시계륵 / 줌 잠금스위치 / AFL버튼 / 멀티코팅 / 나노다공성코팅</p>
       <h2>Product Detail</h2>
@@ -111,6 +116,5 @@
   </main>
 </div>
 
-</body>
 {% endfor %}
 {% endblock %}

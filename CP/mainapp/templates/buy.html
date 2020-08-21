@@ -6,7 +6,14 @@
 <br>
 <strong style="font-size: 25px;">주문내역</strong>
 <hr>
-
+<style>
+  #button {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+</style>
 
   
 <div>
@@ -32,7 +39,19 @@
           <td><a href="#"><img src="{{  buy.product.pic.url }}"  alt="dd" width="100px" height="90px"></a></td>
           <td>{{ buy.product.pdname }}</td>
           <td>{{ buy.product.brand }}</td>
-          <td>{{ buy.countbuy }}</td>
+          <td>
+            <form action = '{% url "buy_check"  user.pk%} ' style = "display : inline; "  method='post'>
+
+              {% csrf_token %}
+            <select name="countby">
+                <option value="1">1</option>
+                <!-- <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option> -->
+            </select>
+            
+          </td>
           <td>{{ buy.product.price }}원</td>
           <td>{{ buy.dcheck }}</td>
           
@@ -44,14 +63,13 @@
             </td>
           <td>
       
-            <form action = '{% url "not_buy"  user.pk%} ' style = "display : inline; ">
-                
+            
+              <a href='{% url "not_buy" buy.id %}'>
                 
                 <input  name = 'post_id' type = 'hidden' value = "{{ buy.id }}" >
                 <button type = 'submit' style = " border: 1px solid red; background-color: rgba(0,0,0,0); color: red; padding: 5px;">삭제</button>
                 <p style = 'color : red; font-size: 10px;'></p>
-                    
-            </form>
+              </a>
             
           </td>
         </tr>
@@ -82,7 +100,7 @@
       <tr>
         <td>{{ request.user.username }}</td>
         <td>{{ request.user.address }}</td>
-        <td>{{ request.user.phone }} {{ request.user.email }}</td>
+        <td>{{ request.user.phone }}</td>
       </tr>
     </tbody>
     
@@ -112,13 +130,20 @@
           {% else %}
           <td>카드</td>
           {% endif %}
-          <td>{{ buy.product.price }}원</td>
+          <td>= {{ buy.product.price }}원</td>
         </tr>
       </tbody>
       {% endfor %}
     </table>
+</div>
+<div id = 'button'>
+
   
+  <button type = 'submit' style = " border: 1px solid red; background-color: rgba(0,0,0,0); color: red; padding: 5px;">결제하기</button>
+  <p style = 'color : red; font-size: 10px;'></p>
+</form>
+
+
 
 </div>
-
 {% endblock %}
