@@ -6,106 +6,76 @@
 <section>
     <div class="features">
         <article>
-            <a href="." class="icon fa-gem"></a>
+            <a href="{% url 'mypage' %}" class="icon fa-gem"></a>
             <div class="content">
-                <h3>바로가기 1</h3>
-                <p>바로가기 페이지 설명</p>
+                <h3>마이페이지</h3>
+                <p>마이페이지에 가유</p>
             </div>
         </article>
         <article>
-            <a href="." class="icon solid fa-paper-plane"></a>
+            <a href="{% url 'album' %}" class="icon solid fa-paper-plane"></a>
             <div class="content">
-                <h3>바로가기 2</h3>
-                <p>바로가기 페이지 설명</p>
+                <h3>사진첩</h3>
+                <p>사람들이 어떤 제품으로 어떤 사진을 찍었는지 알고싶쥬?</p>
             </div>
         </article>
         <article>
-            <a href="." class="icon solid fa-rocket"></a>
+            <a href="{% url 'rank' %}" class="icon solid fa-rocket"></a>
             <div class="content">
-                <h3>바로가기 3</h3>
-                <p>바로가기 페이지 설명</p>
+                <h3>랭킹</h3>
+                <p>바디/렌즈 별 랭킹을 자세히 알고싶쥬?</p>
             </div>
         </article>
         <article>
-            <a href="." class="icon solid fa-signal"></a>
+            <a href="http://google.com" class="icon solid fa-signal"></a>
             <div class="content">
-                <h3>바로가기 4</h3>
-                <p>바로가기 페이지 설명</p>
+                <h3>구글페이지</h3>
+                <p>구글선생님을 보고싶쥬?</p>
             </div>
         </article>
     </div>
 </section>
 
-<!-- index 1위 모델 -->
+<!-- index 1위 모델 이건내일해야겠땀
+{% for first in first %}
 <section id="banner">
     <div class="content">
         <header>
             <h1>금주의 1위</h1>
-            <h3>모델명 불러오기</h3>
+            <h3>{{ first.star }}</h3>
         </header>
         <p>모델 설명</p>
         <ul class="actions">
-            <li><a href="#" class="button big">더 보기</a></li>
         </ul>
     </div>
     <span class="image object">
-        <img src="{% static 'images/Nikon.jpeg' %}" alt="금주의 1위"/> <!-- 나중에 사진 바꿀 것 -->
+        <img src="{{ first.pic.url }}" alt="금주의 1위"/> 
     </span>
 </section>
+{% endfor %} -->
 
-<!-- index 2위 ~ 7위 -->
+{% for rank in rank_all %}
+{% if rank %}
+<!-- index 1위 ~  -->
 <section>
     <div class="posts">
         <article>
-            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-            <h3>2위</h3>
-            <p>제품 설명</p>
-            <ul class="actions">
-                <li><a href="#" class="button">더 보기</a></li>
-            </ul>
+            <h2>{{ forloop.counter }}위</h2>
+
+            {% for product in product %}
+            {% if product.id == rank.pdname %}
+            <h3>{{ product.pdname }}</h3>
+            <img src="{{ product.pic.url }}" alt="" style="width: 300px; height: 300px;" />
+            {% endif %}
+            {% endfor %}
+            <hr>
         </article>
-        <article>
-            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-            <h3>3위</h3>
-            <p>제품 설명</p>
-            <ul class="actions">
-                <li><a href="#" class="button">더 보기</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-            <h3>4위</h3>
-            <p>제품 설명</p>
-            <ul class="actions">
-                <li><a href="#" class="button">더 보기</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-            <h3>5위</h3>
-            <p>제품 설명</p>
-            <ul class="actions">
-                <li><a href="#" class="button">더 보기</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-            <h3>6위</h3>
-            <p>제품 설명</p>
-            <ul class="actions">
-                <li><a href="#" class="button">더 보기</a></li>
-            </ul>
-        </article>
-        <article>
-            <a href="#" class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></a>
-            <h3>7위</h3>
-            <p>제품 설명</p>
-            <ul class="actions">
-                <li><a href="#" class="button">더 보기</a></li>
-            </ul>
-        </article>
+
     </div>
 </section>
+
+{% endif %}
+{% endfor %}
 {% endblock %}
  <!-- 대형 이미지 나열
 <section>
